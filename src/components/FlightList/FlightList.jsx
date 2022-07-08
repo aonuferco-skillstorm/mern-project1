@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
+// Flight subcomponent to display flight information in a row of the table
 const Flight = props => (
     <tr>
       <td><b>{props.flight.flightNumber}</b></td>
@@ -13,7 +13,10 @@ const Flight = props => (
       <td>{props.flight.currentPassengerNumber}</td>
       <td>{props.flight.passengerLimit}</td>
       <td>
-        <Link to={"/edit/"+props.flight._id} style={{textDecoration: 'none'}}>
+        {/* 
+        Link elements for Edit Flight navigation page and deleting a flight from the list
+        */}
+        <Link to={"/edit/" + props.flight._id} style={{textDecoration: 'none'}}>
           <i style={{fontSize:'24px'}} className="fa">&#xf040;</i>
         </Link> | <a href="#" onClick={() => { props.deleteFlight(props.flight._id) }}>
           <i style={{fontSize:'24px', color: 'red'}} className="fa">&#xf014;</i>
@@ -27,8 +30,9 @@ export const  FlightList = () => {
 
     const [flights, setFlights] = useState([]);
     
+    // componentDidMount; 
+    // Initial list returned from Axios GET request
     useEffect( () => {
-      console.log('useEffect called in CreateFlight');
         axios.get('http://localhost:5000/flights/')
             .then(response => {
                 setFlights(response.data);
@@ -38,6 +42,8 @@ export const  FlightList = () => {
             });
     }, []);
 
+    // Axios DELETE method, deleting the flight from the list
+    // and dynamically updating the list of flights
     const deleteFlight = (id) => {
         axios.delete('http://localhost:5000/flights/' + id)
           .then(response => { console.log(response.data)});
@@ -45,17 +51,19 @@ export const  FlightList = () => {
         setFlights(flights.filter( element => element._id !== id));
       }
 
+    // Map of Flight subcomponents for the table
     const flightsList = () => {
         return flights.map(currentFlight => {
             return <Flight flight={currentFlight} deleteFlight={deleteFlight} key={currentFlight._id}/>
           });
     }
 
+    // Main table for the flight list and respective subcomponents
     return (
         <div>
         <h3>Logged Flights</h3>
         <table className="table table-hover" 
-          style={{ background: 'rgba(255,255,255,0.5)'}}>
+          style={{ background: 'rgba(255,255,255, 0.5)'}}>
           <thead className="thead-light">
             <tr>
               <th>FLIGHT #</th>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link }  from 'react-router-dom';
 
+// Bootstrapped Navbar component with sub-components for Home and Create Flight pages
 export  const  Navbar = () => {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg" style={{padding: "1em 1.5em"}}>

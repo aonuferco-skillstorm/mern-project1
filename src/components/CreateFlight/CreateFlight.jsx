@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './CreateFlight.css';
 
 
 export const  CreateFlight = () => {
@@ -14,6 +15,8 @@ export const  CreateFlight = () => {
       passengerLimit : 0
   });
 
+  // Main function, submitting a new flight entry to the database
+  // Axios POST request
   const onSubmit = async (event) => {
       event.preventDefault();
       
@@ -27,25 +30,16 @@ export const  CreateFlight = () => {
       }
   }
 
+  // Handler to set changed values from the input fields
   const changeHandler = e => {
       setFlight({...flight, [e.target.name]: e.target.value})
   }
 
+  // Form component for a new flight entry
   return (
   <div>
-    <h3 className='text-center'>Create New Flight Entry</h3>
-    <form className='form-horizontal' style={{ background: 'rgba(255,255,255,0.5)',
-                    marginTop: '25px',
-                    paddingTop: '25px',
-                    marginBottom: '25px',
-                    paddingBottom: '25px',
-                    marginLeft: '25px',
-                    paddingLeft: '25px',
-                    marginRight: '25px',
-                    paddingRight: '25px',
-                    display: 'block',
-                    width:'50%',
-                    margin:'0 auto'}} onSubmit={onSubmit}>
+    <h2 className='text-center' style={{ marginBottom: '25px'}}>Create New Flight Entry</h2>
+    <form className='form-horizontal' onSubmit={onSubmit}>
       <div className="form-group"> 
       <label>FLIGHT #  </label>
         <input  type="text"
@@ -108,6 +102,7 @@ export const  CreateFlight = () => {
             className="form-control"
             name="currentPassengerNumber"
             min="1"
+            max={flight.passengerLimit}
             value={flight.currentPassengerNumber}
             placeholder='Example: 10'
             onChange={changeHandler}

@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import 'mdb-ui-kit/css/mdb.min.css';
-import background from './bg.jpg';
+import './App.css';
 
 import { Navbar } from './components/Navbar/Navbar';
 import { FlightList } from './components/FlightList/FlightList';
@@ -14,21 +13,24 @@ import { Error } from './components/Error/Error';
 function App() {
   return (
     <BrowserRouter>
-        <div className="container-fluid" style={{
-          backgroundImage: `url(${background})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          width: '100vw',
-          height: '100vh'}}>
+        <div>
         <Navbar />
         <br />
-        <Routes>
-          <Route path="/" element= {<FlightList />} />
-          <Route path="/edit/:id" element= {<EditFlight />} />
-          <Route path="/create" element= {<CreateFlight />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <div className="container-fluid">
+          {/*
+              Creating routes for components.
+              1. Landing page - Table of all flights
+              2. Edit flight page
+              3. Create flight page
+              4. 404 page 
+          */}
+          <Routes>
+            <Route path="/" element= {<FlightList />} />
+            <Route path="/edit/:id" element= {<EditFlight />} />
+            <Route path="/create" element= {<CreateFlight />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </div>
         </div>
     </BrowserRouter>
   );
