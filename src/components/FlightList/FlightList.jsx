@@ -8,10 +8,10 @@ const Flight = props => (
       <td><b>{props.flight.flightNumber}</b></td>
       <td>{props.flight.departureDate.substring(0,10) + " " + props.flight.departureDate.substring(11,16)}</td>
       <td>{props.flight.arrivalDate.substring(0,10) + " " + props.flight.arrivalDate.substring(11,16)}</td>
-      <td>{props.flight.departureAirport}</td>
-      <td>{props.flight.arrivalAirport}</td>
-      <td>{props.flight.currentPassengerNumber}</td>
-      <td>{props.flight.passengerLimit}</td>
+      <td  style={{textAlign : "center"}}>{props.flight.departureAirport}</td>
+      <td  style={{textAlign : "center"}}>{props.flight.arrivalAirport}</td>
+      <td  style={{textAlign : "center"}}>{props.flight.currentPassengerNumber}</td>
+      <td  style={{textAlign : "center"}}>{props.flight.passengerLimit}</td>
       <td>
         {/* 
         Link elements for Edit Flight navigation page and deleting a flight from the list
@@ -61,18 +61,18 @@ export const  FlightList = () => {
     // Main table for the flight list and respective subcomponents
     return (
         <div>
-        <h3>Logged Flights</h3>
-        <table className="table table-hover" 
+        <h3 className='container'>Logged Flights</h3>
+        <table className="table table-hover container" 
           style={{ background: 'rgba(255,255,255, 0.5)'}}>
           <thead className="thead-light">
             <tr>
               <th>FLIGHT #</th>
               <th>DEPARTURE DATE</th>
               <th>ARRIVAL DATE</th>
-              <th>DEPARTURE AIRPORT</th>
-              <th>ARRIVAL AIRPORT</th>
-              <th>CURRENT PAX #</th>
-              <th>PAX LIMIT</th>
+              <th  style={{textAlign : "center"}}>DEPARTURE AIRPORT</th>
+              <th  style={{textAlign : "center"}}>ARRIVAL AIRPORT</th>
+              <th  style={{textAlign : "center"}}>CURRENT PAX #</th>
+              <th  style={{textAlign : "center"}}>PAX LIMIT</th>
               <th></th>
             </tr>
           </thead>

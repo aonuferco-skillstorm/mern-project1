@@ -67,7 +67,7 @@ export const  CreateFlight = () => {
         <div>
         <input type="datetime-local" id="meeting-time"
           name="arrivalDate" 
-          min={new Date().toISOString().slice(0, -8)}
+          min={flight.departureDate.length > 0 ? flight.departureDate : new Date().toISOString().slice(0, -8)}
           required
           onChange={changeHandler}
           />
